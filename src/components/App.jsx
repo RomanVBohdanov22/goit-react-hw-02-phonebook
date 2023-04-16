@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+import Notiflix from 'notiflix';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };  
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+    name: '',
+    number: '',
+  };
 
   render() {
-
     return (
       <div
         style={{
@@ -22,11 +29,8 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <div>
-          goit-react-hw-02-phonebook
-        </div>
+        <div>goit-react-hw-02-phonebook</div>
       </div>
     );
   }
 }
-
