@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Notiflix from 'notiflix';
 import ContactForm from './contactsform';
 import ContactList from './contactlist';
+import { nanoid } from 'nanoid';
 import FilterContacts from './filter';
 import Title from './title';
 function getRandomHexColor() {
@@ -51,6 +52,7 @@ export class App extends Component {
     }));
     Notiflix.Notify.info(`Succesfully removed ${name} from your contacts`);
   };
+
 
   render() {
     const { contacts, filter } = this.state;

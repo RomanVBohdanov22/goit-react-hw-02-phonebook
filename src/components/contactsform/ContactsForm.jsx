@@ -10,13 +10,10 @@ class ContactForm extends Component {
     number: '',
   };
 
-  handleNameChange = e => {
-    this.setState({ name: e.currentTarget.value });
-  };
-
-  handleNumberChange = e => {
-    this.setState({ number: e.currentTarget.value });
-  };
+  handleChange = e => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value});
+  }
 
   clearFormFields = e => {
     e.preventDefault();
@@ -31,17 +28,20 @@ class ContactForm extends Component {
       this.setState({ name: '', number: '' });
       Notiflix.Notify.failure('This contact is already exists');
       return;
-    } else {
+    }
+      this.setState({ name: '', number: '' });
+
       Notiflix.Notify.success(`Succesfully added ${name} to your contacts`);
       this.props.onFormSubmit({
         name,
         number,
         id: nanoid(),
       });
-      this.setState({ name: '', number: '' });
-    }
-  };
+        
+      
 
+  };
+// 
   render() {
     return (
       <form onSubmit={this.clearFormFields} className="contactForm">
@@ -52,7 +52,7 @@ class ContactForm extends Component {
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          onChange={this.handleNameChange}
+          onChange={this.handleChange}
           value={this.state.name}
           required
         />
@@ -63,7 +63,7 @@ class ContactForm extends Component {
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          onChange={this.handleNumberChange}
+          onChange={this.handleChange}
           value={this.state.number}
           required
         />
