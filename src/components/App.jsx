@@ -2,9 +2,20 @@ import React, { Component } from 'react';
 import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 
-export class App extends Component {
-  
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 
+const appStyles = {  height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 28,
+          gap: '18px',
+          color: '#010101',};
+export class App extends Component {  
+  
   state = {
     contacts: [
       /*{ id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -45,16 +56,7 @@ export class App extends Component {
   render() {
     return (
       <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 28,
-          gap: '18px',
-          color: '#010101',
-        }}
+        style={{ ... appStyles, backgroundColor:  getRandomHexColor() }}
       >
         <div>
           goit-react-hw-02-phonebook
