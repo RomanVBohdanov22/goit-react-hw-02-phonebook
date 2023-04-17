@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Notiflix from 'notiflix';
 //import { nanoid } from 'nanoid';
 import ContactForm from './contactsform';
+import ContactList from './contactlist';
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
@@ -28,9 +29,9 @@ export class App extends Component {
     //name: '',
     //number: '',
   };
-  
+
   // methods
-    onFormSubmit = ({ id, name, number }) => {
+  onFormSubmit = ({ id, name, number }) => {
     const contact = {
       id,
       name,
@@ -39,7 +40,7 @@ export class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
-      console.log(this.state.contacts);
+    console.log(this.state.contacts);
   };
 
   onSearchContact = e => {
@@ -54,7 +55,6 @@ export class App extends Component {
   };
   // - methods
 
-
   render() {
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
@@ -65,8 +65,12 @@ export class App extends Component {
             onFormSubmit={this.onFormSubmit}
             contacts={this.state.contacts}
           />
-          
           <h2>Contacts</h2>
+          <ContactList
+            contacts={this.state.contacts}
+            deleteContact={this.deleteContact}
+            filter={this.state.filter}
+          />
         </div>
       </div>
     );
@@ -109,5 +113,5 @@ export class App extends Component {
     );
   };*/
 
-  /*
-   */
+/*
+ */
