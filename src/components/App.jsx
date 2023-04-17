@@ -3,11 +3,13 @@ import Notiflix from 'notiflix';
 //import { nanoid } from 'nanoid';
 import ContactForm from './contactsform';
 import ContactList from './contactlist';
+import FilterContacts from './filter';
+import Title from './title';
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-const appStyles = {  
+const appStyles = {
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -56,19 +58,21 @@ export class App extends Component {
   // - methods
 
   render() {
+    const { contacts, filter } = this.state;
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
         <div>
           <h1>Phonebook</h1>
-          <ContactForm
-            onFormSubmit={this.onFormSubmit}
-            contacts={this.state.contacts}
+          <ContactForm onFormSubmit={this.onFormSubmit} contacts={contacts} />
+          <Title title={'Contacts'} />
+          <FilterContacts
+            filter={filter}
+            onSearchContact={this.onSearchContact}
           />
-          <h2>Contacts</h2>
           <ContactList
-            contacts={this.state.contacts}
+            contacts={contacts}
             deleteContact={this.deleteContact}
-            filter={this.state.filter}
+            filter={filter}
           />
         </div>
       </div>
