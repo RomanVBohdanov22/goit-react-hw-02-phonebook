@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
 
-export class ContactForm extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',

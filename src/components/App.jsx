@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notiflix from 'notiflix';
-import { nanoid } from 'nanoid';
+//import { nanoid } from 'nanoid';
 import ContactForm from './contactsform';
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -39,6 +39,7 @@ export class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
+      console.log(this.state.contacts);
   };
 
   onSearchContact = e => {
