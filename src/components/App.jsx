@@ -7,14 +7,14 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-const appStyles = {
-  height: '100vh',
+const appStyles = {  
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: 28,
-  gap: '18px',
+  fontSize: '24px',
+  gap: '8px',
   color: '#010101',
 };
 export class App extends Component {
@@ -59,7 +59,6 @@ export class App extends Component {
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
         <div>
-          goit-react-hw-02-phonebook
           <h1>Phonebook</h1>
           <ContactForm
             onFormSubmit={this.onFormSubmit}
