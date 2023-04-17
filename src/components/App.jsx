@@ -31,15 +31,22 @@ export class App extends Component {
   };
 
   // methods
-  onFormSubmit = ({ id, name, number }) => {
+  onFormSubmit = ({ name, number }) => {
     const contact = {
-      id,
+      id: nanoid(),
       name,
       number,
     };
+    
+    if (this.state.contacts.some(contact => contact.name === name || contact.number === number))
+    {       
+      Notiflix.Notify.failure('This contact is already exists');
+      return;
+      }  
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
+    Notiflix.Notify.success(`Succesfully added ${name} to your contacts`);
   };
 
   onSearchContact = evt => {

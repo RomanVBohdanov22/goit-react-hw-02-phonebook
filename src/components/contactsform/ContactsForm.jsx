@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import '../contactsform/ContactsForm.css';
-import Notiflix from 'notiflix';
-import { nanoid } from 'nanoid';
+
 import { Component } from 'react';
 
 class ContactForm extends Component {
@@ -19,23 +18,11 @@ class ContactForm extends Component {
     e.preventDefault();
     const name = e.target.name.value;
     const number = e.target.number.value;
+    this.setState({ name: '', number: '' });
 
-    if (
-      this.props.contacts.some(
-        contact => contact.name === name || contact.number === number
-      )
-    ) {
-      this.setState({ name: '', number: '' });
-      Notiflix.Notify.failure('This contact is already exists');
-      return;
-    }
-      this.setState({ name: '', number: '' });
-
-      Notiflix.Notify.success(`Succesfully added ${name} to your contacts`);
       this.props.onFormSubmit({
         name,
-        number,
-        id: nanoid(),
+        number,        
       });
         
       
