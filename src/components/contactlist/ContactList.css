@@ -29,4 +29,13 @@
   background-color: #ee9095;
   font-weight: 500;
   cursor: pointer;
+  line-height: 1.1;
+}
+
+.contactsList button:focus {
+  background-color: gold;
+  border-color: coral;
+}
+.contactsList button:hover {
+  background-color: aquamarine;
 }

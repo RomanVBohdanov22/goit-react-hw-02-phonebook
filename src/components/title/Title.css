@@ -1,4 +1,7 @@
-.titlerow {
+.titlerowh1 {
+  font-style: normal;
+}
+.titlerowh2 {
   padding: 0;
   font-style: italic;
 }

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Notiflix from 'notiflix';
-//import { nanoid } from 'nanoid';
 import ContactForm from './contactsform';
 import ContactList from './contactlist';
 import FilterContacts from './filter';
 import Title from './title';
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  return `#${Math.floor((0.5+0.5*Math.random()) * 16777215).toString(16)}`;
 }
 
 const appStyles = {
@@ -16,7 +15,7 @@ const appStyles = {
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '24px',
-  gap: '8px',
+  gap: '12px',
   color: '#010101',
 };
 export class App extends Component {
@@ -28,8 +27,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    //name: '',
-    //number: '',
   };
 
   // methods
@@ -42,11 +39,10 @@ export class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
-    console.log(this.state.contacts);
   };
 
-  onSearchContact = e => {
-    this.setState({ filter: e.currentTarget.value });
+  onSearchContact = evt => {
+    this.setState({ filter: evt.currentTarget.value });
   };
 
   deleteContact = (id, name) => {
@@ -55,23 +51,23 @@ export class App extends Component {
     }));
     Notiflix.Notify.info(`Succesfully removed ${name} from your contacts`);
   };
-  // - methods
 
   render() {
     const { contacts, filter } = this.state;
+    const {onFormSubmit, onSearchContact, deleteContact} = this;
     return (
       <div style={{ ...appStyles, backgroundColor: getRandomHexColor() }}>
         <div>
-          <h1>Phonebook</h1>
-          <ContactForm onFormSubmit={this.onFormSubmit} contacts={contacts} />
+          <Title title={'Phonebook'} />
+          <ContactForm onFormSubmit={onFormSubmit} contacts={contacts} />
           <Title title={'Contacts'} />
           <FilterContacts
             filter={filter}
-            onSearchContact={this.onSearchContact}
+            onSearchContact={onSearchContact}
           />
           <ContactList
             contacts={contacts}
-            deleteContact={this.deleteContact}
+            deleteContact={deleteContact}
             filter={filter}
           />
         </div>
@@ -79,42 +75,3 @@ export class App extends Component {
     );
   }
 }
-
-/**
- <div>
-  <h1>Phonebook</h1>
-  <ContactForm ... />
-
-  <h2>Contacts</h2>
-  <Filter ... />
-  <ContactList ... />
-</div>
- */
-/*
-  addContact = value => {
-    const { name, number } = value;
-    let exContact = this.state.contacts.find(
-      exCon => exCon.name === name && exCon.number === number
-    );
-    if (!(exContact === undefined)) {
-      Notiflix.Notify.warning(`${name} ${number} is already in contact`);
-      return;
-    }
-    this.setState(prevState => ({
-      contacts: [{ ...value, id: nanoid() }, ...prevState.contacts],
-    }));
-  };
-  deleteContact = contactId => {};
-  onChangeFind = evt => {
-    this.setState({ filter: evt.target.value });
-  };
-
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLocaleLowerCase())
-    );
-  };*/
-
-/*
- */

@@ -30,3 +30,11 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.contactForm .ContactBtn:active {
+  background-color: gold;
+  border-color: coral;
+}
+.contactForm .ContactBtn:hover {
+  background-color: aquamarine;
+}
