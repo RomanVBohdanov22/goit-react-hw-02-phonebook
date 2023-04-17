@@ -2,14 +2,15 @@ import PropTypes from 'prop-types';
 import '../filter/Filter.css';
 
 const FilterContacts = ({ filter, onSearchContact }) => {
-  return (
+    return (
+    <label htmlFor="searchInput"><span className='pseudo'>Search contact by name <br/></span>
     <input
       className="searchInput"
       type="text"
       name="search"
       value={filter}
       onChange={onSearchContact}
-    />
+    /></label>
   );
 };
 
