@@ -3,7 +3,7 @@ import '../filter/Filter.css';
 
 const FilterContacts = ({ filter, onSearchContact }) => {
     return (
-    <label htmlFor="searchInput"><span className='pseudo'>Search contact by name <br/></span>
+    <label htmlFor="search"><span className='pseudo'>Search contact by name <br/></span>
     <input
       className="searchInput"
       type="text"
